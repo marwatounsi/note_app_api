@@ -10,7 +10,7 @@ const noteSchema = new mongoose.Schema({
     default: false
   },
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId, // Reference to the User model
     ref: 'User',
     required: true
   }
