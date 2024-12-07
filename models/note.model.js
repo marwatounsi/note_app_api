@@ -5,6 +5,10 @@ const noteSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  title: {
+    type: String,
+    required: true
+  },
   archived: {
     type: Boolean,
     default: false

@@ -3,6 +3,7 @@ const createNote = async (req, res) => {
   try {
     const note = new Note({
       content: req.body.content,
+      title: req.body.title,
       user: req.user._id // Assuming the user is authenticated and attached to `req.user`
     });
     await note.save();
@@ -23,7 +24,7 @@ const getUserNotes = async (req, res) => {
 // Update a note
 const updateNote = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['content', 'archived'];
+  const allowedUpdates = ['title' , 'content', 'archived'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
   if (!isValidOperation) {
     return res.status(400).send({ error: 'Invalid updates!' });
