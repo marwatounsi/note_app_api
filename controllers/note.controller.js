@@ -24,7 +24,7 @@ const getUserNotes = async (req, res) => {
 // Update a note
 const updateNote = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['title' , 'content', 'archived', '_id'];
+  const allowedUpdates = ['title', 'content', 'archived', '_id'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
   if (!isValidOperation) {
     return res.status(400).send({ error: 'Invalid updates!' });
@@ -34,7 +34,7 @@ const updateNote = async (req, res) => {
     if (!note) {
       return res.status(404).send();
     }
-    updates.forEach((update) => note[update] = req.body[update]);
+    updates.forEach((update) => {if (update != "_id") note[update] = req.body[update]});
     await note.save();
     res.send(note);
   } catch (error) {
