@@ -24,7 +24,7 @@ const getUserNotes = async (req, res) => {
 // Update a note
 const updateNote = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['title' , 'content', 'archived'];
+  const allowedUpdates = ['title' , 'content', 'archived', '_id'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
   if (!isValidOperation) {
     return res.status(400).send({ error: 'Invalid updates!' });
